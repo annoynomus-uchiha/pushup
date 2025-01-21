@@ -4,72 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpenCV Live Stream</title>
-    <style>
-       body {
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-         min-height: 100vh;
-           background-color: #222;
-          color: #eee;
-          font-family: sans-serif;
-         padding: 20px;
-       }
-        #video-feed {
-            max-width: 80%;
-            border: 1px solid #333;
-            border-radius: 8px;
-            width: 100%;
-          height: auto;
-        }
-       .video-container-wrapper {
-        display: flex;
-         flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
-         max-width: 100%;
-      }
-      .video-container{
-            position: relative;
-            margin-bottom: 20px;
-             max-width: 100%;
-         }
-
-       #warning {
-            color: #ff8c00;
-           margin-top: 10px;
-           font-size: 1.2em;
-        }
-
-    </style>
 </head>
 <body>
-  <div class="video-container-wrapper">
-       <div class="video-container">
-        <img id="video-feed">
-        </div>
-         <div id="warning"></div>
-    </div>
+    <img id="video-feed">
+    <img id="doll-canvas">
      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script>
     const socket = io();
     const videoFeed = document.getElementById('video-feed');
-    const warningDiv = document.getElementById('warning');
-    socket.on('connect', () => {
-         warningDiv.textContent= "Connected to server";
-     })
-    socket.on('disconnect', () => {
-        warningDiv.textContent = "Disconnected from server";
-    });
-
+    const dollCanvas = document.getElementById('doll-canvas');
     socket.on('video_frame', function(data) {
-          try {
-             videoFeed.src = "data:image/jpeg;base64," + data;
-          } catch (e) {
-              console.log(e);
-            }
+          videoFeed.src = "data:image/jpeg;base64," + data;
+       });
+    socket.on('doll_frame', function(data) {
+           dollCanvas.src = "data:image/jpeg;base64," + data;
         });
   </script>
 </body>
