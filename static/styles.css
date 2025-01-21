@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #222;
+    color: #eee;
+    font-family: sans-serif;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+}
+.video-controls{
+      display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.video-controls button {
+    margin-right: 10px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.video-controls button:disabled {
+  background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.video-controls label,
+.video-controls input,
+.video-controls span{
+  margin-right: 10px;
+  color: white;
+}
+
+
+.video-container-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    max-width: 90%;
+}
+
+.video-container {
+    position: relative;
+    margin-bottom: 20px;
+    max-width: 100%;
+}
+
+#camera-view {
+    border: 1px solid #333;
+    border-radius: 8px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    transform: scaleX(-1);
+}
+
+#overlay-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    border: 1px solid #333;
+    border-radius: 8px;
+    max-width: 100%;
+    height: auto;
+}
+
+#warning {
+    color: #ff8c00;
+    margin-top: 10px;
+    font-size: 1.2em;
+}
+
+.doll-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 90%;
+    margin-top: 20px;
+}
+
+#doll-canvas {
+    border: 1px solid #333;
+    border-radius: 8px;
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .video-container-wrapper,
+    .doll-container {
+        max-width: 50%;
+         margin-bottom: 10px;
+    }
+     .video-container {
+          margin-bottom: 0px;
+      }
+    .doll-container {
+      margin-top: 0;
+      }
+    body {
+        flex-direction: row; /* Main content in row for landscape */
+    }
+     html, body{
+          width:100%;
+         height:100vh;
+         overflow: auto;
+    }
+}
